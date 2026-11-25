@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="Hermes TikTok — a personal assistant integration that helps the account owner publish videos and view their own TikTok profile and video data through TikTok's official APIs." />
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMDAiIGZpbGw9IiMwZjBmMTIiLz4KICA8IS0tIFRpa1Rvay1zdHlsZSBvZmZzZXQgZWNob2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOCwxNCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1RjRFRSIgc3Ryb2tlLXdpZHRoPSI5MiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjg1Ij4KICAgIDxwYXRoIGQ9Ik0zNDAgMjgwIEwzNDAgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNNjg0IDI4MCBMNjg0IDc0NCIvPgogICAgPHBhdGggZD0iTTM0MCA1MTIgTDY4NCA1MTIiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgsLTE0KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkUyQzU1IiBzdHJva2Utd2lkdGg9IjkyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuODUiPgogICAgPHBhdGggZD0iTTM0MCAyODAgTDM0MCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik02ODQgMjgwIEw2ODQgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNMzQwIDUxMiBMNjg0IDUxMiIvPgogIDwvZz4KICA8IS0tIE1haW4gSCAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iOTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMzQwIDI4MCBMMzQwIDc0NCIvPgogICAgPHBhdGggZD0iTTY4NCAyODAgTDY4NCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik0zNDAgNTEyIEw2ODQgNTEyIi8+CiAgPC9nPgogIDwhLS0gUGxheSBjdXQtb3V0IGF0IHRoZSBjZW50cmUgb2YgdGhlIEggLS0+CiAgPHBhdGggZD0iTTQ1OCA0MTQgTDQ1OCA2MTAgTDYyOCA1MTIgWiIgZmlsbD0iIzBmMGYxMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=" type="image/svg+xml" />
+<title>Hermes TikTok — Official Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#f7f6f3; --bg-raise:#ffffff; --bg-sink:#efede8;
+    --ink:#141417; --ink-2:#3f3f46; --muted:#6d6d76;
+    --line:#e2e0d9; --line-strong:#cfccc2;
+    --accent:#fe2c55; --accent-ink:#d81e42; --cyan:#0e7c86; --cyan-bright:#25f4ee;
+    --dark:#0f0f12; --dark-2:#1a1a1f;
+    --ok:#177245; --ok-bg:#e6f4ec;
+    --warn:#8a5a00; --warn-bg:#fdf3d7;
+    --err:#b42318; --err-bg:#fdecea;
+    --code-bg:#0f0f12; --code-ink:#f4f4f5;
+    --radius:14px;
+    --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#101013; --bg-raise:#18181d; --bg-sink:#0b0b0e;
+      --ink:#f2f2f0; --ink-2:#cfcfd4; --muted:#9a9aa3;
+      --line:#26262c; --line-strong:#3a3a42;
+      --accent-ink:#ff5c7a; --cyan:#3ec6cf;
+      --ok:#4cc38a; --ok-bg:#12291d;
+      --warn:#e5b95c; --warn-bg:#2c230d;
+      --err:#ff8a7a; --err-bg:#331512;
+      --code-bg:#000000; --code-ink:#f4f4f5;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent-ink)}
+  button{font-family:inherit;cursor:pointer;min-height:44px}
+  :focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+
+  /* ---------- header ---------- */
+  header.site{position:sticky;top:0;z-index:50;background:var(--dark);color:#fff;border-bottom:1px solid #26262c}
+  .header-in{max-width:1060px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:14px;min-height:64px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;margin-right:auto;padding:8px 0}
+  .brand img{width:40px;height:40px;border-radius:10px;display:block}
+  .brand .bname{font-weight:800;font-size:19px;letter-spacing:-.01em;line-height:1.1}
+  .brand .bsub{font-size:12px;color:#a1a1aa;line-height:1.2}
+  nav.main{display:flex;gap:2px;flex-wrap:wrap;padding:6px 0}
+  nav.main a{color:#d4d4d8;text-decoration:none;font-weight:600;font-size:14.5px;padding:10px 13px;border-radius:9px;min-height:44px;display:inline-flex;align-items:center}
+  nav.main a:hover{background:#26262c;color:#fff}
+  nav.main a.active{background:#fff;color:#0f0f12}
+  nav.main a.cta{background:var(--accent);color:#fff}
+  nav.main a.cta.active{background:#fff;color:var(--accent-ink)}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  main{padding-bottom:72px}
+  .view{display:none}
+  .view.on{display:block}
+
+  /* ---------- hero ---------- */
+  .hero{padding:52px 0 8px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start}
+  .hero h1{font-size:clamp(32px,5.2vw,50px);line-height:1.08;letter-spacing:-.025em;margin:14px 0 16px;font-weight:800}
+  .hero h1 .tk{position:relative;white-space:nowrap}
+  .hero p.lede{font-size:18px;color:var(--ink-2);margin:0 0 22px;max-width:34em}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg-raise);border:1px solid var(--line-strong);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;color:var(--ink-2)}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--warn);flex:none}
+  .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;border:1px solid transparent;padding:11px 20px;font-weight:700;font-size:15px;text-decoration:none;min-height:48px}
+  .btn.primary{background:var(--dark);color:#fff}
+  @media (prefers-color-scheme: dark){.btn.primary{background:#fff;color:#0f0f12}}
+  .btn.red{background:var(--accent);color:#fff}
+  .btn.ghost{background:var(--bg-raise);border-color:var(--line-strong);color:var(--ink)}
+  .btn.small{min-height:40px;padding:7px 14px;font-size:13.5px;border-radius:9px}
+  .hero-meta{font-size:13.5px;color:var(--muted);margin-top:14px}
+  .hero-meta strong{color:var(--ink-2)}
+
+  .appcard{background:var(--dark);color:#e4e4e7;border-radius:18px;padding:24px;border:1px solid #26262c}
+  .appcard .ac-head{display:flex;gap:14px;align-items:center;padding-bottom:18px;border-bottom:1px solid #26262c;margin-bottom:18px}
+  .appcard .ac-head img{width:56px;height:56px;border-radius:14px}
+  .appcard .ac-name{font-weight:800;font-size:18px;color:#fff;line-height:1.2}
+  .appcard .ac-org{font-size:13px;color:#a1a1aa}
+  .appcard dl{margin:0;display:grid;gap:12px;font-size:14px}
+  .appcard dt{color:#8b8b93;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .appcard dd{margin:2px 0 0;color:#f4f4f5;font-weight:600;word-break:break-all}
+  .appcard dd.mono{font-family:var(--mono);font-size:13px;font-weight:400}
+  .tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+  .tag{font-family:var(--mono);font-size:12px;background:#26262c;color:#e4e4e7;border-radius:6px;padding:3px 8px}
+
+  /* ---------- sections ---------- */
+  section.block{padding:44px 0 4px}
+  h2.sec{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;line-height:1.15;margin:0 0 10px;font-weight:800}
+  p.sec-lede{color:var(--ink-2);margin:0 0 24px;max-width:44em}
+  .rule{height:1px;background:var(--line);margin-top:44px}
+
+  .rows{border-top:1px solid var(--line)}
+  .rowitem{display:grid;grid-template-columns:220px 1fr;gap:8px 28px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .rowitem h3{margin:0;font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .rowitem h3 .scope{display:block;font-family:var(--mono);font-size:12.5px;font-weight:400;color:var(--accent-ink);margin-top:5px}
+  .rowitem p{margin:0;color:var(--ink-2)}
+  .rowitem p + p{margin-top:8px}
+  .rowitem ul{margin:8px 0 0;padding-left:20px;color:var(--ink-2)}
+  .rowitem li{margin:3px 0}
+
+  ol.steps{list-style:none;counter-reset:step;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+  ol.steps li{counter-increment:step;display:grid;grid-template-columns:52px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
+  ol.steps li::before{content:counter(step);width:40px;height:40px;border-radius:50%;background:var(--dark);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px}
+  @media (prefers-color-scheme: dark){ol.steps li::before{background:#fff;color:#0f0f12}}
+  ol.steps h3{margin:2px 0 4px;font-size:16.5px}
+  ol.steps p{margin:0;color:var(--ink-2)}
+
+  .note{border-radius:var(--radius);padding:18px 20px;font-size:15px}
+  .note.warn{background:var(--warn-bg);color:var(--ink)}
+  .note.plain{background:var(--bg-sink);color:var(--ink-2)}
+  .note strong{color:var(--ink)}
+
+  /* portal URL table */
+  .urltable{display:grid;gap:10px}
+  .urlrow{display:grid;grid-template-columns:170px 1fr auto;gap:12px;align-items:center;background:var(--bg-raise);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .urlrow .lbl{font-weight:700;font-size:14px}
+  .urlrow .lbl span{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}
+  .urlrow code{font-family:var(--mono);font-size:12.5px;word-break:break-all;color:var(--ink-2);background:var(--bg-sink);border-radius:8px;padding:8px 10px}
+  .copybtn{background:var(--bg-raise);border:1px solid var(--line-strong);color:var(--ink);border-radius:9px;padding:8px 14px;font-weight:700;font-size:13.5px;white-space:nowrap}
+  .copybtn:hover{border-color:var(--ink)}
+  .copybtn.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+
+  /* review text */
+  .reviewbox{background:var(--code-bg);color:var(--code-ink);border-radius:16px;padding:22px}
+  .reviewbox .rb-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .reviewbox .rb-head h3{margin:0;color:#fff;font-size:16px;margin-right:auto}
+  .reviewbox pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:var(--mono);font-size:13px;line-height:1.7;color:#d4d4d8;max-height:520px;overflow:auto}
+  .reviewbox .copybtn{background:#26262c;border-color:#3f3f46;color:#fff}
+  .reviewbox .copybtn.done{background:#14532d;border-color:#22c55e;color:#bbf7d0}
+
+  /* icon section */
+  .iconflex{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+  .iconflex img.big{width:168px;height:168px;border-radius:36px;box-shadow:0 10px 34px rgba(0,0,0,.22)}
+  .iconflex .icon-copy{flex:1;min-width:260px}
+  .iconflex p{color:var(--ink-2);margin:0 0 16px}
+
+  /* ---------- legal pages ---------- */
+  .legal{max-width:780px;padding-top:44px}
+  .legal h1{font-size:clamp(28px,4vw,38px);letter-spacing:-.02em;margin:0 0 6px}
+  .legal .updated{color:var(--muted);font-size:14px;margin:0 0 30px}
+  .legal h2{font-size:19px;margin:32px 0 8px;letter-spacing:-.01em}
+  .legal p,.legal li{color:var(--ink-2)}
+  .legal ul{padding-left:22px}
+  .legal li{margin:4px 0}
+  .legal .backlink{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-decoration:none;margin-bottom:8px}
+
+  /* ---------- callback ---------- */
+  .cb{max-width:780px;margin:0 auto;padding-top:44px}
+  .cb h1{font-size:clamp(28px,4vw,38px);letter-spacing:-.02em;margin:0 0 10px}
+  .cb .lede{color:var(--ink-2);margin:0 0 26px}
+  .status{border-radius:16px;padding:22px;margin-bottom:20px}
+  .status.ok{background:var(--ok-bg);border:1px solid var(--ok)}
+  .status.err{background:var(--err-bg);border:1px solid var(--err)}
+  .status.idle{background:var(--bg-raise);border:1px solid var(--line-strong)}
+  .status h2{margin:0 0 6px;font-size:20px}
+  .status p{margin:0;color:var(--ink-2)}
+  .codebox{background:var(--code-bg);border-radius:14px;padding:18px;margin:14px 0}
+  .codebox .cb-label{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#a1a1aa;margin-bottom:8px}
+  .codebox .cb-code{font-family:var(--mono);font-size:15px;line-height:1.6;color:#fff;word-break:break-all}
+  .codebox .cb-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .codebox .copybtn{background:#fff;border-color:#fff;color:#0f0f12;font-size:14.5px;padding:10px 18px}
+  .codebox .copybtn.done{background:#14532d;border-color:#22c55e;color:#bbf7d0}
+  .paramtable{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 4px}
+  .paramtable th,.paramtable td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .paramtable th{width:150px;color:var(--muted);font-weight:700}
+  .paramtable td{font-family:var(--mono);font-size:13px;word-break:break-all;color:var(--ink)}
+  .pastebox{background:var(--bg-raise);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:22px}
+  .pastebox h3{margin:0 0 6px;font-size:16px}
+  .pastebox p{margin:0 0 12px;color:var(--ink-2);font-size:14.5px}
+  .pastebox .prow{display:flex;gap:10px;flex-wrap:wrap}
+  .pastebox input{flex:1;min-width:220px;min-height:48px;border:1px solid var(--line-strong);border-radius:10px;padding:10px 14px;font-family:var(--mono);font-size:13px;background:var(--bg);color:var(--ink)}
+  .secnote{font-size:13.5px;color:var(--muted);margin-top:18px}
+
+  footer.site{border-top:1px solid var(--line);margin-top:64px;padding:30px 0 44px;color:var(--muted);font-size:14px}
+  footer .f-in{display:flex;gap:14px 34px;flex-wrap:wrap;align-items:flex-start}
+  footer nav{display:flex;gap:4px;flex-wrap:wrap}
+  footer nav a{color:var(--ink-2);text-decoration:none;font-weight:600;padding:10px 10px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px}
+  footer nav a:hover{background:var(--bg-sink)}
+  footer .f-brand{font-weight:800;color:var(--ink)}
+  footer p{margin:4px 0;max-width:52em}
+
+  @media (max-width:820px){
+    .hero{grid-template-columns:1fr;gap:26px;padding-top:36px}
+    .rowitem{grid-template-columns:1fr}
+    .urlrow{grid-template-columns:1fr}
+    .urlrow .copybtn{justify-self:start}
+    .header-in{gap:6px}
+    nav.main a{padding:10px 9px;font-size:13.5px}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-in">
+    <a class="brand" href="#/" data-nav="home">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMDAiIGZpbGw9IiMwZjBmMTIiLz4KICA8IS0tIFRpa1Rvay1zdHlsZSBvZmZzZXQgZWNob2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOCwxNCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1RjRFRSIgc3Ryb2tlLXdpZHRoPSI5MiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjg1Ij4KICAgIDxwYXRoIGQ9Ik0zNDAgMjgwIEwzNDAgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNNjg0IDI4MCBMNjg0IDc0NCIvPgogICAgPHBhdGggZD0iTTM0MCA1MTIgTDY4NCA1MTIiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgsLTE0KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkUyQzU1IiBzdHJva2Utd2lkdGg9IjkyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuODUiPgogICAgPHBhdGggZD0iTTM0MCAyODAgTDM0MCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik02ODQgMjgwIEw2ODQgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNMzQwIDUxMiBMNjg0IDUxMiIvPgogIDwvZz4KICA8IS0tIE1haW4gSCAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iOTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMzQwIDI4MCBMMzQwIDc0NCIvPgogICAgPHBhdGggZD0iTTY4NCAyODAgTDY4NCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik0zNDAgNTEyIEw2ODQgNTEyIi8+CiAgPC9nPgogIDwhLS0gUGxheSBjdXQtb3V0IGF0IHRoZSBjZW50cmUgb2YgdGhlIEggLS0+CiAgPHBhdGggZD0iTTQ1OCA0MTQgTDQ1OCA2MTAgTDYyOCA1MTIgWiIgZmlsbD0iIzBmMGYxMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=" alt="Hermes TikTok app icon" />
+      <span><span class="bname">Hermes TikTok</span><br /><span class="bsub">Personal TikTok assistant integration</span></span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#/" data-nav="home">Home</a>
+      <a href="#/review" data-nav="review">Review notes</a>
+      <a href="#/terms" data-nav="terms">Terms</a>
+      <a href="#/privacy" data-nav="privacy">Privacy</a>
+      <a href="#/callback" data-nav="callback" class="cta">Authorization callback</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= HOME ================= -->
+  <div class="view" id="view-home">
+    <div class="hero">
+      <div>
+        <span class="pill"><span class="dot" aria-hidden="true"></span> TikTok developer app · Status: Draft — pending review</span>
+        <h1>Your TikTok account, managed by <span class="tk">your own assistant.</span></h1>
+        <p class="lede">Hermes TikTok is a single-user integration between the Hermes personal assistant and the account owner&rsquo;s own TikTok account. It signs the owner in with TikTok, shows the owner their own profile and videos, and publishes videos to their own account — using only TikTok&rsquo;s official APIs.</p>
+        <div class="hero-actions">
+          <a class="btn red" href="#/callback">Open the authorization callback</a>
+          <a class="btn ghost" href="#/review">Read the review notes</a>
+        </div>
+        <p class="hero-meta">Built for one user: the account owner. No public sign-up, no third-party data, no advertising. Operated by the <strong>Hermes</strong> developer organization.</p>
+      </div>
+      <aside class="appcard" aria-label="App facts">
+        <div class="ac-head">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMDAiIGZpbGw9IiMwZjBmMTIiLz4KICA8IS0tIFRpa1Rvay1zdHlsZSBvZmZzZXQgZWNob2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOCwxNCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1RjRFRSIgc3Ryb2tlLXdpZHRoPSI5MiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjg1Ij4KICAgIDxwYXRoIGQ9Ik0zNDAgMjgwIEwzNDAgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNNjg0IDI4MCBMNjg0IDc0NCIvPgogICAgPHBhdGggZD0iTTM0MCA1MTIgTDY4NCA1MTIiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgsLTE0KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkUyQzU1IiBzdHJva2Utd2lkdGg9IjkyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuODUiPgogICAgPHBhdGggZD0iTTM0MCAyODAgTDM0MCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik02ODQgMjgwIEw2ODQgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNMzQwIDUxMiBMNjg0IDUxMiIvPgogIDwvZz4KICA8IS0tIE1haW4gSCAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iOTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMzQwIDI4MCBMMzQwIDc0NCIvPgogICAgPHBhdGggZD0iTTY4NCAyODAgTDY4NCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik0zNDAgNTEyIEw2ODQgNTEyIi8+CiAgPC9nPgogIDwhLS0gUGxheSBjdXQtb3V0IGF0IHRoZSBjZW50cmUgb2YgdGhlIEggLS0+CiAgPHBhdGggZD0iTTQ1OCA0MTQgTDQ1OCA2MTAgTDYyOCA1MTIgWiIgZmlsbD0iIzBmMGYxMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=" alt="" />
+          <div><div class="ac-name">Hermes TikTok</div><div class="ac-org">Organization: Hermes</div></div>
+        </div>
+        <dl>
+          <div><dt>App ID</dt><dd class="mono">7712031353398921237</dd></div>
+          <div><dt>Platform</dt><dd>TikTok for Developers</dd></div>
+          <div><dt>Products</dt><dd><span class="tagrow"><span class="tag">Login Kit</span><span class="tag">Content Posting API</span></span></dd></div>
+          <div><dt>Scopes requested</dt><dd><span class="tagrow"><span class="tag">user.info.basic</span><span class="tag">video.list</span><span class="tag">video.publish</span><span class="tag">video.upload</span></span></dd></div>
+          <div><dt>Audience</dt><dd>The account owner only (personal use)</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <section class="block" aria-labelledby="what-h">
+      <h2 class="sec" id="what-h">What the app does</h2>
+      <p class="sec-lede">Hermes is the owner&rsquo;s personal automation assistant. The owner gives Hermes instructions (for example, &ldquo;post this video tomorrow at 7pm&rdquo; or &ldquo;show me my recent videos and their view counts&rdquo;), and Hermes carries them out on the owner&rsquo;s own TikTok account through this app. Every action is initiated by the owner and can be revoked by the owner at any time in TikTok&rsquo;s settings.</p>
+      <div class="rows">
+        <div class="rowitem">
+          <h3>Sign in with TikTok<span class="scope">Login Kit · user.info.basic</span></h3>
+          <div>
+            <p>The owner authorizes Hermes TikTok through TikTok&rsquo;s standard OAuth 2.0 flow with PKCE. The app receives the owner&rsquo;s open ID, display name, and avatar — only enough to confirm which account is connected.</p>
+          </div>
+        </div>
+        <div class="rowitem">
+          <h3>View your own videos<span class="scope">Login Kit · video.list (Display API endpoints)</span></h3>
+          <div>
+            <p>Hermes can list the owner&rsquo;s own videos and display their titles, cover images, and public engagement counts back to the owner, so the owner can review what is live on their account and plan follow-up content. On TikTok&rsquo;s platform the Display API is not a separate product — its endpoints are enabled through Login Kit together with the <em>video.list</em> scope.</p>
+          </div>
+        </div>
+        <div class="rowitem">
+          <h3>Publish your videos<span class="scope">Content Posting API · video.publish</span></h3>
+          <div>
+            <p>When the owner asks Hermes to post, the app uploads the owner&rsquo;s own video file and publishes it to the owner&rsquo;s own account as a Direct Post, with the title and privacy level the owner specified.</p>
+          </div>
+        </div>
+        <div class="rowitem">
+          <h3>Send to inbox for finishing<span class="scope">Content Posting API · video.upload</span></h3>
+          <div>
+            <p>Alternatively, Hermes can upload a video to the owner&rsquo;s TikTok inbox, where the owner reviews, edits, and publishes it manually in the TikTok app. Nothing is published without the owner&rsquo;s final action in this mode.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="how-h">
+      <h2 class="sec" id="how-h">How authorization works</h2>
+      <p class="sec-lede">The full end-to-end flow a reviewer can reproduce:</p>
+      <ol class="steps">
+        <li><div><h3>Hermes generates an authorization link</h3><p>Hermes builds a TikTok Login Kit authorization URL with a PKCE code challenge and a random state value, and sends the link to the owner.</p></div></li>
+        <li><div><h3>The owner approves on TikTok</h3><p>The owner opens the link, signs in to TikTok, reviews the requested scopes, and approves. The owner can decline or revoke access at any time.</p></div></li>
+        <li><div><h3>TikTok redirects back to this website</h3><p>TikTok redirects the owner&rsquo;s browser to this website&rsquo;s plain address — the registered redirect URI, with no fragment — carrying a one-time authorization code in the query string (<code style="font-family:var(--mono);font-size:.92em">?code=…</code>). The site detects the code as soon as the page loads and immediately shows the <a href="#/callback">authorization-code view</a> with the code and a copy button, so the owner can copy it and send it back to Hermes.</p></div></li>
+        <li><div><h3>Hermes exchanges the code for tokens</h3><p>Hermes exchanges the code (with its PKCE verifier) for an access token and refresh token, stored only on the owner&rsquo;s own Hermes instance. Hermes then calls the Display API endpoints (via Login Kit) and the Content Posting API on the owner&rsquo;s behalf, and checks posting status until TikTok confirms the result.</p></div></li>
+      </ol>
+      <div class="note plain" style="margin-top:22px"><strong>Scope honesty:</strong> TikTok&rsquo;s official APIs do not offer endpoints for posting comments or liking content on behalf of a user, so Hermes TikTok does not request those capabilities and does not automate them in any other way. The app only uses the products and scopes listed on this page.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section class="block" aria-labelledby="portal-h">
+      <h2 class="sec" id="portal-h">URLs for the TikTok developer portal</h2>
+      <p class="sec-lede">Most portal fields take this website&rsquo;s own address, plus the page suffix shown below. Take the address from this page&rsquo;s share / open link, then append the suffix for the page you need — for example, the Terms of Service URL is this website&rsquo;s address followed by <code style="font-family:var(--mono);font-size:.92em">#/terms</code>. Two fields are exceptions: the Redirect URI is the plain address with nothing appended, and URL ownership is verified with the verification file listed below.</p>
+      <div class="urltable">
+        <div class="urlrow"><div class="lbl">Website URL<span>App details → Website</span></div><code>this website&rsquo;s address (no suffix)</code><span aria-hidden="true"></span></div>
+        <div class="urlrow"><div class="lbl">Terms of Service URL<span>App details → Terms of Service</span></div><code>this website&rsquo;s address + #/terms</code><button class="copybtn" type="button" data-copy-text="#/terms">Copy suffix</button></div>
+        <div class="urlrow"><div class="lbl">Privacy Policy URL<span>App details → Privacy Policy</span></div><code>this website&rsquo;s address + #/privacy</code><button class="copybtn" type="button" data-copy-text="#/privacy">Copy suffix</button></div>
+        <div class="urlrow"><div class="lbl">Redirect URI<span>Login Kit → Redirect URI</span></div><code>this website&rsquo;s address — plain, nothing appended</code><span aria-hidden="true"></span></div>
+        <div class="urlrow"><div class="lbl">URL verification file<span>App details → Verify URL ownership</span></div><code>tiktokng6nmb0wn9RGkqAnOcqLmYAa4TvFTIYr.txt</code><a class="copybtn" href="data:text/plain;base64,dGlrdG9rLWRldmVsb3BlcnMtc2l0ZS12ZXJpZmljYXRpb249bmc2bm1iMHduOVJHa3FBbk9jcUxtWUFhNFR2RlRJWXIK" style="text-decoration:none;display:inline-flex;align-items:center">Open file</a></div>
+      </div>
+      <div class="note warn" style="margin-top:16px"><strong>Note for setup:</strong> TikTok rejects redirect URIs that contain a fragment (anything with a #), so register the plain website address exactly as the redirect URI — do not append <em>#/callback</em>. After the owner approves, TikTok redirects back to that same plain address with the authorization code in the query string (<em>?code=…</em>), and this website detects the code on load and shows it on the authorization-code view automatically. TikTok also requires an HTTPS redirect URI on the same domain as the website URL — that is why the callback lives on this website rather than on a local address. For URL ownership verification, the file named above is hosted on this website with exactly the verification line TikTok issued.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section class="block" aria-labelledby="icon-h">
+      <h2 class="sec" id="icon-h">App icon</h2>
+      <div class="iconflex">
+        <img class="big" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMDAiIGZpbGw9IiMwZjBmMTIiLz4KICA8IS0tIFRpa1Rvay1zdHlsZSBvZmZzZXQgZWNob2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOCwxNCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1RjRFRSIgc3Ryb2tlLXdpZHRoPSI5MiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjg1Ij4KICAgIDxwYXRoIGQ9Ik0zNDAgMjgwIEwzNDAgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNNjg0IDI4MCBMNjg0IDc0NCIvPgogICAgPHBhdGggZD0iTTM0MCA1MTIgTDY4NCA1MTIiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgsLTE0KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkUyQzU1IiBzdHJva2Utd2lkdGg9IjkyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuODUiPgogICAgPHBhdGggZD0iTTM0MCAyODAgTDM0MCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik02ODQgMjgwIEw2ODQgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNMzQwIDUxMiBMNjg0IDUxMiIvPgogIDwvZz4KICA8IS0tIE1haW4gSCAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iOTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMzQwIDI4MCBMMzQwIDc0NCIvPgogICAgPHBhdGggZD0iTTY4NCAyODAgTDY4NCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik0zNDAgNTEyIEw2ODQgNTEyIi8+CiAgPC9nPgogIDwhLS0gUGxheSBjdXQtb3V0IGF0IHRoZSBjZW50cmUgb2YgdGhlIEggLS0+CiAgPHBhdGggZD0iTTQ1OCA0MTQgTDQ1OCA2MTAgTDYyOCA1MTIgWiIgZmlsbD0iIzBmMGYxMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=" alt="Hermes TikTok app icon: a white letter H with a play button at its centre, with cyan and red offset echoes, on a black rounded square" />
+        <div class="icon-copy">
+          <p>The Hermes TikTok icon — an &ldquo;H&rdquo; for Hermes with a play button at its centre, with the cyan/red offset echo associated with TikTok. The TikTok portal requires a 1024 × 1024 image; use the button below to download it at exactly that size as a PNG.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn primary small" type="button" id="dlIconPng" style="min-height:44px;padding:10px 18px;font-size:14.5px">Download 1024 × 1024 PNG</button>
+            <a class="btn ghost small" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMDAiIGZpbGw9IiMwZjBmMTIiLz4KICA8IS0tIFRpa1Rvay1zdHlsZSBvZmZzZXQgZWNob2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOCwxNCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1RjRFRSIgc3Ryb2tlLXdpZHRoPSI5MiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjg1Ij4KICAgIDxwYXRoIGQ9Ik0zNDAgMjgwIEwzNDAgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNNjg0IDI4MCBMNjg0IDc0NCIvPgogICAgPHBhdGggZD0iTTM0MCA1MTIgTDY4NCA1MTIiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgsLTE0KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkUyQzU1IiBzdHJva2Utd2lkdGg9IjkyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuODUiPgogICAgPHBhdGggZD0iTTM0MCAyODAgTDM0MCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik02ODQgMjgwIEw2ODQgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNMzQwIDUxMiBMNjg0IDUxMiIvPgogIDwvZz4KICA8IS0tIE1haW4gSCAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iOTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMzQwIDI4MCBMMzQwIDc0NCIvPgogICAgPHBhdGggZD0iTTY4NCAyODAgTDY4NCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik0zNDAgNTEyIEw2ODQgNTEyIi8+CiAgPC9nPgogIDwhLS0gUGxheSBjdXQtb3V0IGF0IHRoZSBjZW50cmUgb2YgdGhlIEggLS0+CiAgPHBhdGggZD0iTTQ1OCA0MTQgTDQ1OCA2MTAgTDYyOCA1MTIgWiIgZmlsbD0iIzBmMGYxMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=" download="hermes-tiktok-icon.svg" style="min-height:44px;padding:10px 18px;font-size:14.5px">Download SVG</a>
+          </div>
+          <p class="secnote" id="iconMsg" role="status"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= REVIEW ================= -->
+  <div class="view" id="view-review">
+    <div class="legal" style="max-width:860px">
+      <a class="backlink" href="#/">← Back to home</a>
+      <h1>App review notes</h1>
+      <p class="updated">Explanation of how Hermes TikTok uses each TikTok product and scope — written for the TikTok app review team. Copy the text in the box and paste it into the review form in the developer portal.</p>
+    </div>
+    <div class="reviewbox">
+      <div class="rb-head"><h3>Review explanation — copy &amp; paste</h3><button class="copybtn" type="button" id="copyReview">Copy review text</button></div>
+      <pre id="reviewText">App name: Hermes TikTok
+Developer organization: Hermes
+App ID: 7712031353398921237
+Website: (this website — home page)
+Terms of Service: (this website — #/terms)
+Privacy Policy: (this website — #/privacy)
+Redirect URI: (this website — plain website address, nothing appended)
+
+WHAT THE APP IS
+Hermes TikTok is a personal, single-user integration. The user is the developer/account owner himself. Hermes is the owner's personal assistant; this app lets Hermes act on the owner's own TikTok account, at the owner's explicit request, using only TikTok's official APIs. There is no public sign-up, no multi-user service, no advertising, and no data is collected from any third party.
+
+HOW EACH PRODUCT AND SCOPE IS USED
+
+1) Login Kit — scope: user.info.basic
+Hermes generates a Login Kit authorization URL using OAuth 2.0 with PKCE (code challenge + state). The owner opens the link, signs in to TikTok, reviews the scopes, and approves. TikTok redirects the owner's browser to our redirect URI — the plain website address registered in the portal (TikTok rejects redirect URIs containing a fragment) — with a one-time authorization code in the query string (?code=...). On page load the website detects the code automatically and displays it, with a copy button, so the owner can copy it and send it back to Hermes. Hermes then exchanges the code together with the PKCE verifier for an access token and refresh token. user.info.basic is used only to confirm the connected account's identity (open ID, display name, avatar) so the owner can verify the right account is linked. Tokens are stored only on the owner's own Hermes instance, are never shared, and access can be revoked by the owner at any time in TikTok settings.
+
+2) Display API endpoints, enabled via Login Kit — scope: video.list
+Note: on TikTok's platform the Display API is not a separate product; its endpoints are enabled through Login Kit together with the video.list scope. After authorization, Hermes queries the Display API's video list and query endpoints to list the owner's own videos (title, cover image, create time, and public engagement counts such as views, likes, comments, and shares). The results are shown only to the owner, so the owner can review what is currently published on their own account and decide what to post next. No other user's videos or data are accessed.
+
+3) Content Posting API — scope: video.publish (Direct Post)
+When the owner instructs Hermes to publish a video, Hermes uploads the owner's own video file through the Content Posting API and creates a Direct Post on the owner's own account, using the title and privacy level the owner specified. Hermes then polls the posting status endpoint until TikTok confirms the post is published or reports a failure, and reports the result back to the owner.
+
+4) Content Posting API — scope: video.upload (Upload to inbox)
+As an alternative the owner can choose, Hermes uploads the owner's video to the owner's TikTok inbox instead. The video is not published by the API in this mode; the owner reviews, edits, and publishes it manually inside the TikTok app.
+
+END-TO-END FLOW (for the demo video)
+1. Hermes creates the authorization link and sends it to the owner.
+2. The owner opens the link, logs in to TikTok, and approves the requested scopes.
+3. TikTok redirects to the plain website address (the redirect URI) with the authorization code in the query string; the website detects the code on load and displays it automatically, and the owner copies it and sends it to Hermes.
+4. Hermes exchanges the code for tokens and fetches the owner's profile (user.info.basic).
+5. Hermes lists the owner's recent videos via the Display API endpoints (Login Kit, video.list) and shows them to the owner.
+6. The owner asks Hermes to post a video; Hermes publishes it via Direct Post (video.publish) — or uploads it to the inbox (video.upload) — and confirms the final status to the owner.
+
+DATA HANDLING SUMMARY
+Data accessed is limited to the owner's own account data returned by the scopes above. It is processed only to carry out the owner's instructions, is stored only on the owner's own systems, is never sold or shared with third parties, and is deleted when the owner revokes access or asks for deletion. Full details are in the Privacy Policy on this website.
+
+NOTES
+- The app does not use, and does not request, any capability TikTok does not officially offer. In particular, comments and likes are not automated, because TikTok provides no official API endpoints for them.
+- All API calls are made server-to-server by Hermes after the owner completes the OAuth flow; the website itself is static and stores no tokens or user data.</pre>
+    </div>
+    <div style="max-width:860px">
+      <div class="note warn" style="margin-top:20px"><strong>Still needed for submission:</strong> a demo video recording the end-to-end flow above (authorization → profile → video list → posting). The video can only be recorded once the integration is connected, after the app details, icon, and URLs on this website are saved in the portal.</div>
+      <section class="block" aria-labelledby="check-h" style="padding-top:34px">
+        <h2 class="sec" id="check-h" style="font-size:24px">Submission checklist</h2>
+        <div class="rows">
+          <div class="rowitem"><h3>App icon (1024 × 1024)</h3><p>Ready — download the PNG from the <a href="#/">home page</a> and upload it in the portal.</p></div>
+          <div class="rowitem"><h3>Website URL</h3><p>Ready — copy it from the portal URLs section on the <a href="#/">home page</a>.</p></div>
+          <div class="rowitem"><h3>Terms of Service URL</h3><p>Ready — the <a href="#/terms">Terms page</a> on this website.</p></div>
+          <div class="rowitem"><h3>Privacy Policy URL</h3><p>Ready — the <a href="#/privacy">Privacy Policy page</a> on this website.</p></div>
+          <div class="rowitem"><h3>Redirect URI</h3><p>Ready — register this website&rsquo;s plain address under Login Kit, with nothing appended (TikTok rejects redirect URIs containing a # fragment). TikTok returns to that address with <em>?code=…</em> and the code is displayed automatically.</p></div>
+          <div class="rowitem"><h3>URL verification file</h3><p>Ready — the file <em>tiktokng6nmb0wn9RGkqAnOcqLmYAa4TvFTIYr.txt</em> is hosted on this website with exactly the verification line TikTok issued; it is linked from the portal URLs section on the <a href="#/">home page</a>.</p></div>
+          <div class="rowitem"><h3>Review explanation</h3><p>Ready — the copy-and-paste text above, per product and scope.</p></div>
+          <div class="rowitem"><h3>Demo video</h3><p>Not yet — record the real end-to-end flow after the app is connected (see note above).</p></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ================= TERMS ================= -->
+  <div class="view" id="view-terms">
+    <article class="legal">
+      <a class="backlink" href="#/">← Back to home</a>
+      <h1>Terms of Service</h1>
+      <p class="updated">Hermes TikTok · Last updated: 25 November 2026</p>
+
+      <h2>1. About this service</h2>
+      <p>Hermes TikTok (&ldquo;the App&rdquo;) is a personal integration operated by the Hermes developer organization (&ldquo;we&rdquo;, &ldquo;us&rdquo;). The App connects the Hermes personal assistant to the TikTok account of the account owner (&ldquo;you&rdquo;) through TikTok&rsquo;s official developer platform, so that Hermes can, at your explicit instruction, display your own TikTok profile and video information to you and publish or upload your own videos to your own TikTok account.</p>
+      <p>The App is provided for the personal use of the account owner. It is not a public service, does not offer accounts or sign-up to third parties, and is not affiliated with or endorsed by TikTok or ByteDance Ltd.</p>
+
+      <h2>2. Eligibility and your TikTok account</h2>
+      <ul>
+        <li>You must own the TikTok account you connect, and your use of TikTok must comply with TikTok&rsquo;s Terms of Service and Community Guidelines.</li>
+        <li>You connect your account by completing TikTok&rsquo;s OAuth authorization flow. You may revoke the App&rsquo;s access at any time in your TikTok settings, which immediately stops the App from acting on your account.</li>
+        <li>You are responsible for instructions you give to Hermes and for content you ask the App to publish.</li>
+      </ul>
+
+      <h2>3. What the App may do on your behalf</h2>
+      <p>Within the scopes you approve during authorization, the App may:</p>
+      <ul>
+        <li>read your basic profile information (open ID, display name, avatar) to confirm the connected account;</li>
+        <li>list your own videos and their public engagement counts, and show them to you;</li>
+        <li>publish videos you provide as Direct Posts to your own account, with the title and privacy level you specify; and</li>
+        <li>upload videos you provide to your TikTok inbox for you to finish and publish manually.</li>
+      </ul>
+      <p>The App will not post, upload, or modify anything except at your instruction, and will not access any other person&rsquo;s account or data.</p>
+
+      <h2>4. Acceptable use</h2>
+      <ul>
+        <li>Do not use the App to publish content that violates TikTok&rsquo;s Community Guidelines, applicable law, or the rights of others.</li>
+        <li>Do not use the App for spam, inauthentic engagement, or automated commenting or liking. The App does not provide these capabilities.</li>
+        <li>Do not attempt to use the App to access accounts or data that are not your own.</li>
+      </ul>
+
+      <h2>5. Availability and changes</h2>
+      <p>The App depends on TikTok&rsquo;s developer platform and APIs, which may change, be limited, or be withdrawn by TikTok at any time. We may modify or discontinue the App, and may update these Terms; the current version will always be posted on this page with its revision date. Continued use after an update means you accept the updated Terms.</p>
+
+      <h2>6. Disclaimer and liability</h2>
+      <p>The App is provided &ldquo;as is&rdquo; for personal use, without warranties of any kind. To the maximum extent permitted by law, we are not liable for indirect or consequential losses arising from use of the App, from actions taken by TikTok (including content moderation decisions), or from interruptions of TikTok&rsquo;s platform. Nothing in these Terms limits liability that cannot be limited by law.</p>
+
+      <h2>7. Termination</h2>
+      <p>You may stop using the App at any time by revoking its access in your TikTok settings and asking us to delete any stored tokens and data, as described in the <a href="#/privacy">Privacy Policy</a>. We may suspend or end the App at any time, including if its use violates these Terms or TikTok&rsquo;s developer terms and policies.</p>
+
+      <h2>8. Governing terms</h2>
+      <p>Your use of TikTok remains governed by TikTok&rsquo;s own terms and policies. If any part of these Terms conflicts with TikTok&rsquo;s developer terms as they apply to the App, TikTok&rsquo;s developer terms prevail for the App&rsquo;s operation.</p>
+
+      <h2>9. Contact</h2>
+      <p>Questions about these Terms can be sent to the Hermes developer organization through the contact details listed in the TikTok for Developers portal for this app (App ID 7712031353398921237).</p>
+    </article>
+  </div>
+
+  <!-- ================= PRIVACY ================= -->
+  <div class="view" id="view-privacy">
+    <article class="legal">
+      <a class="backlink" href="#/">← Back to home</a>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Hermes TikTok · Last updated: 25 November 2026</p>
+
+      <h2>1. Who this policy covers</h2>
+      <p>This policy explains how Hermes TikTok (&ldquo;the App&rdquo;), operated by the Hermes developer organization, handles data when the owner of a TikTok account (&ldquo;you&rdquo;) connects that account to the Hermes personal assistant. The App is a personal, single-user integration: it only ever accesses the connected owner&rsquo;s own TikTok data.</p>
+
+      <h2>2. Data the App accesses</h2>
+      <p>Through TikTok&rsquo;s official APIs, and only within the scopes you approve, the App accesses:</p>
+      <ul>
+        <li><strong>Basic profile data</strong> (scope <em>user.info.basic</em>): your TikTok open ID, display name, and avatar URL — used to confirm which account is connected.</li>
+        <li><strong>Your video list</strong> (scope <em>video.list</em>): identifiers, titles, cover images, creation times, and public engagement counts (views, likes, comments, shares) of your own videos — shown back to you so you can review your account.</li>
+        <li><strong>Videos you ask us to post</strong> (scopes <em>video.publish</em> and <em>video.upload</em>): the video file, title, and privacy level you provide for a specific post or inbox upload, sent to TikTok to carry out that instruction.</li>
+        <li><strong>Authorization tokens</strong>: the OAuth access token and refresh token issued by TikTok when you authorize the App, plus posting-status results returned by TikTok for your uploads.</li>
+      </ul>
+      <p>The App does not access your TikTok password, direct messages, followers&rsquo; private data, or any data of accounts other than your own. This website is static: it collects no analytics, sets no tracking cookies, and stores nothing. The authorization callback page displays the authorization code in your own browser only, so you can copy it; the code is not sent to or stored by this website.</p>
+
+      <h2>3. How data is used</h2>
+      <ul>
+        <li>To carry out your instructions: showing you your profile and videos, and publishing or uploading videos you asked to post.</li>
+        <li>To confirm posting results (published, processing, or failed) and report them back to you.</li>
+        <li>For no other purpose. Your data is never sold, never used for advertising, and never shared with third parties, except TikTok itself as required to perform the API calls you requested.</li>
+      </ul>
+
+      <h2>4. Storage and security</h2>
+      <ul>
+        <li>Access and refresh tokens are stored only on the owner&rsquo;s own Hermes system, in access-restricted storage, and are never printed in logs or shared in chat or email.</li>
+        <li>Video files are transmitted to TikTok for the post you requested and are not retained by the App after TikTok confirms the final posting status, except where you keep your own copies in your own storage.</li>
+        <li>Profile and video-list responses are processed to answer your request and are not built into any profile of you and are not retained longer than needed to display them to you and keep a basic activity record on your own system.</li>
+      </ul>
+
+      <h2>5. Your choices and rights</h2>
+      <ul>
+        <li><strong>Revoke access:</strong> you can disconnect the App at any time in TikTok&rsquo;s settings (Settings → Security → Apps and websites, or the equivalent current path). Revocation immediately ends the App&rsquo;s ability to call TikTok&rsquo;s APIs for your account.</li>
+        <li><strong>Deletion:</strong> on revocation, or at any time on your request to the contact below, stored tokens are deleted and any retained account data on the Hermes system is erased.</li>
+        <li><strong>Access and correction:</strong> the data the App holds about you is your own TikTok data, which you can view and correct directly in TikTok.</li>
+      </ul>
+
+      <h2>6. Children</h2>
+      <p>The App is intended solely for the adult account owner who operates it and is not directed at children. It does not knowingly collect data about children.</p>
+
+      <h2>7. Changes to this policy</h2>
+      <p>If this policy changes, the updated version will be posted on this page with a new revision date. Material changes to what data is accessed would require new scopes, which TikTok would present to you for approval before any access occurs.</p>
+
+      <h2>8. Contact</h2>
+      <p>Privacy questions or deletion requests can be sent to the Hermes developer organization through the contact details listed in the TikTok for Developers portal for this app (App ID 7712031353398921237).</p>
+    </article>
+  </div>
+
+  <!-- ================= CALLBACK ================= -->
+  <div class="view" id="view-callback">
+    <div class="cb">
+      <h1>Authorization callback</h1>
+      <p class="lede">This view is where Hermes TikTok receives its authorization result. The registered redirect URI is this website&rsquo;s plain address — after you approve access on TikTok, TikTok sends your browser back to that address with a one-time authorization code in the query string (<em>?code=…</em>). This page detects the code as soon as it loads and shows it below with a copy button — no pasting needed. Copy the code and send it back to Hermes to finish connecting your account.</p>
+
+      <div id="cbResult"></div>
+
+      <div id="cbParamsWrap" style="display:none">
+        <h2 style="font-size:19px;margin:26px 0 4px">What TikTok sent</h2>
+        <table class="paramtable" id="cbParams" aria-label="Authorization parameters"></table>
+      </div>
+
+      <ol class="steps" style="margin-top:30px">
+        <li><div><h3>Copy the code above</h3><p>Use the Copy button. The code is single-use and expires quickly (about 10 minutes), so send it to Hermes right away.</p></div></li>
+        <li><div><h3>Send it to Hermes</h3><p>Paste the code into your conversation with Hermes. Do not share it with anyone else — whoever holds the code and Hermes&rsquo; PKCE verifier can complete the sign-in.</p></div></li>
+        <li><div><h3>Hermes finishes the connection</h3><p>Hermes exchanges the code for access tokens and confirms your connected TikTok profile back to you. You can close this page afterwards.</p></div></li>
+      </ol>
+
+      <div class="pastebox">
+        <h3>Already have a redirect link?</h3>
+        <p>If TikTok sent you to a different tab or you copied the full redirect address, paste it here and this page will pull the code out of it.</p>
+        <div class="prow">
+          <input type="text" id="pasteUrl" placeholder="Paste the full redirect URL here…" aria-label="Full redirect URL" />
+          <button class="btn primary" type="button" id="extractBtn" style="min-height:48px">Extract code</button>
+        </div>
+        <p class="secnote" id="pasteMsg" role="status"></p>
+      </div>
+
+      <p class="secnote">Security note: this page is static and runs entirely in your browser. The code is read from this page&rsquo;s address, displayed only to you, and never transmitted or stored by this website. If you arrived here without starting an authorization from Hermes, you can safely close this page — an unused code expires on its own.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap f-in">
+    <div style="min-width:220px">
+      <div class="f-brand">Hermes TikTok</div>
+      <p>Personal TikTok integration for the account owner, operated by the Hermes developer organization.<br />App ID 7712031353398921237 · Not affiliated with TikTok or ByteDance Ltd.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#/">Home</a>
+      <a href="#/review">Review notes</a>
+      <a href="#/terms">Terms of Service</a>
+      <a href="#/privacy">Privacy Policy</a>
+      <a href="#/callback">Authorization callback</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- clipboard helper ---------- */
+  function copyText(text, btn){
+    function done(){
+      if(!btn) return;
+      var old = btn.textContent;
+      btn.textContent = "Copied ✓";
+      btn.classList.add("done");
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove("done"); }, 2200);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(); });
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch(e){}
+      document.body.removeChild(ta); done();
+    }
+  }
+
+  var suffixBtns = document.querySelectorAll("[data-copy-text]");
+  for (var i=0;i<suffixBtns.length;i++){
+    suffixBtns[i].addEventListener("click", function(){
+      copyText(this.getAttribute("data-copy-text") || "", this);
+    });
+  }
+
+  var copyReview = document.getElementById("copyReview");
+  if (copyReview){
+    copyReview.addEventListener("click", function(){
+      copyText(document.getElementById("reviewText").textContent.trim(), this);
+    });
+  }
+
+  /* ---------- icon PNG download (1024 x 1024) ---------- */
+  var dlBtn = document.getElementById("dlIconPng");
+  if (dlBtn){
+    dlBtn.addEventListener("click", function(){
+      var msg = document.getElementById("iconMsg");
+      var img = new Image();
+      img.onload = function(){
+        try {
+          var c = document.createElement("canvas");
+          c.width = 1024; c.height = 1024;
+          var ctx = c.getContext("2d");
+          ctx.drawImage(img, 0, 0, 1024, 1024);
+          c.toBlob(function(blob){
+            if(!blob){ msg.textContent = "PNG export failed in this browser — the SVG above is the same artwork and can be converted to 1024 × 1024 PNG."; return; }
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "hermes-tiktok-icon-1024.png";
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+            msg.textContent = "Downloaded hermes-tiktok-icon-1024.png — upload this file as the app icon in the TikTok portal.";
+          }, "image/png");
+        } catch(e){
+          msg.textContent = "PNG export failed in this browser — the SVG above is the same artwork and can be converted to 1024 × 1024 PNG.";
+        }
+      };
+      img.onerror = function(){ msg.textContent = "Could not load the icon artwork — try the SVG download instead."; };
+      img.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMDAiIGZpbGw9IiMwZjBmMTIiLz4KICA8IS0tIFRpa1Rvay1zdHlsZSBvZmZzZXQgZWNob2VzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOCwxNCkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1RjRFRSIgc3Ryb2tlLXdpZHRoPSI5MiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjg1Ij4KICAgIDxwYXRoIGQ9Ik0zNDAgMjgwIEwzNDAgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNNjg0IDI4MCBMNjg0IDc0NCIvPgogICAgPHBhdGggZD0iTTM0MCA1MTIgTDY4NCA1MTIiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgsLTE0KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkUyQzU1IiBzdHJva2Utd2lkdGg9IjkyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuODUiPgogICAgPHBhdGggZD0iTTM0MCAyODAgTDM0MCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik02ODQgMjgwIEw2ODQgNzQ0Ii8+CiAgICA8cGF0aCBkPSJNMzQwIDUxMiBMNjg0IDUxMiIvPgogIDwvZz4KICA8IS0tIE1haW4gSCAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iOTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMzQwIDI4MCBMMzQwIDc0NCIvPgogICAgPHBhdGggZD0iTTY4NCAyODAgTDY4NCA3NDQiLz4KICAgIDxwYXRoIGQ9Ik0zNDAgNTEyIEw2ODQgNTEyIi8+CiAgPC9nPgogIDwhLS0gUGxheSBjdXQtb3V0IGF0IHRoZSBjZW50cmUgb2YgdGhlIEggLS0+CiAgPHBhdGggZD0iTTQ1OCA0MTQgTDQ1OCA2MTAgTDYyOCA1MTIgWiIgZmlsbD0iIzBmMGYxMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=";
+    });
+  }
+
+  /* ---------- callback handling ---------- */
+  function getParams(){
+    var p = {};
+    var s = new URLSearchParams(location.search);
+    s.forEach(function(v,k){ p[k]=v; });
+    // Also support code delivered in the hash query style: #/callback?code=...
+    var h = location.hash || "";
+    var qi = h.indexOf("?");
+    if (qi >= 0){
+      var hs = new URLSearchParams(h.slice(qi+1));
+      hs.forEach(function(v,k){ if(!(k in p)) p[k]=v; });
+    }
+    return p;
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(ch){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];
+    });
+  }
+
+  function renderCallback(params){
+    var host = document.getElementById("cbResult");
+    var wrap = document.getElementById("cbParamsWrap");
+    var table = document.getElementById("cbParams");
+    if(!host) return;
+    var code = params.code || "";
+    var err = params.error || "";
+    var errDesc = params.error_description || "";
+
+    if (err){
+      host.innerHTML =
+        '<div class="status err"><h2>Authorization was not completed</h2>' +
+        '<p>TikTok returned an error: <strong>' + esc(err) + '</strong>' +
+        (errDesc ? ' — ' + esc(errDesc) : '') +
+        '. No access was granted. You can close this page and ask Hermes for a fresh authorization link.</p></div>';
+    } else if (code){
+      host.innerHTML =
+        '<div class="status ok"><h2>✓ Authorization approved</h2>' +
+        '<p>TikTok approved the connection. Copy your one-time authorization code below and send it to Hermes to finish.</p>' +
+        '<div class="codebox"><div class="cb-label">Authorization code</div>' +
+        '<div class="cb-code" id="cbCode">' + esc(code) + '</div>' +
+        '<div class="cb-actions"><button class="copybtn" type="button" id="cbCopy">Copy code</button></div></div>' +
+        (params.state ? '<p style="font-size:13.5px">State value received and shown below for verification — Hermes checks it matches the request it sent.</p>' : '') +
+        '</div>';
+      var b = document.getElementById("cbCopy");
+      if (b){ b.addEventListener("click", function(){ copyText(code, this); }); }
+    } else {
+      host.innerHTML =
+        '<div class="status idle"><h2>Waiting for an authorization…</h2>' +
+        '<p>No authorization code is in this page&rsquo;s address yet. Start from the authorization link Hermes sends you: after you approve on TikTok, you will land back here and your code will appear on this page automatically.</p></div>';
+    }
+
+    var keys = Object.keys(params);
+    if (keys.length){
+      wrap.style.display = "block";
+      var rows = "";
+      var order = ["code","state","scopes","error","error_description"];
+      var seen = {};
+      order.forEach(function(k){ if (k in params){ rows += row(k, params[k]); seen[k]=1; } });
+      keys.forEach(function(k){ if(!seen[k]) rows += row(k, params[k]); });
+      table.innerHTML = rows;
+    } else {
+      wrap.style.display = "none";
+      table.innerHTML = "";
+    }
+    function row(k,v){
+      return '<tr><th scope="row">' + esc(k) + '</th><td>' + esc(v) + '</td></tr>';
+    }
+  }
+
+  var extractBtn = document.getElementById("extractBtn");
+  if (extractBtn){
+    extractBtn.addEventListener("click", function(){
+      var input = document.getElementById("pasteUrl");
+      var msg = document.getElementById("pasteMsg");
+      var val = (input.value || "").trim();
+      if (!val){ msg.textContent = "Paste a redirect URL first."; return; }
+      var params = {};
+      try {
+        var u = new URL(val);
+        u.searchParams.forEach(function(v,k){ params[k]=v; });
+        if (u.hash && u.hash.indexOf("?") >= 0){
+          new URLSearchParams(u.hash.slice(u.hash.indexOf("?")+1)).forEach(function(v,k){ if(!(k in params)) params[k]=v; });
+        }
+      } catch(e){
+        var m = val.match(/[?&#]code=([^&#\s]+)/);
+        if (m) params.code = decodeURIComponent(m[1]);
+        var ms = val.match(/[?&#]state=([^&#\s]+)/);
+        if (ms) params.state = decodeURIComponent(ms[1]);
+      }
+      if (params.code || params.error){
+        renderCallback(params);
+        msg.textContent = "Code extracted from the pasted URL — it is shown above, ready to copy.";
+        window.scrollTo({top:0, behavior:"smooth"});
+      } else {
+        msg.textContent = "No code or error found in that URL. Check that you pasted the full address TikTok redirected you to.";
+      }
+    });
+  }
+
+  /* ---------- router ---------- */
+  var views = { home:"view-home", review:"view-review", terms:"view-terms", privacy:"view-privacy", callback:"view-callback" };
+  function currentRoute(){
+    var h = (location.hash || "").replace(/^#\/?/, "").split("?")[0].split("/")[0];
+    if (views[h]) return h;
+    return "home";
+  }
+  function render(){
+    var params = getParams();
+    var route = currentRoute();
+    // TikTok redirects to the plain site URL (redirect URIs with fragments
+    // are rejected), so a code/error in the ?query string always wins:
+    // show the authorization-code view immediately, whatever the hash is.
+    var qs = new URLSearchParams(location.search);
+    if (qs.has("code") || qs.has("error")) route = "callback";
+    else if ((params.code || params.error) && (location.hash === "" || location.hash === "#/" || location.hash === "#")) route = "callback";
+    for (var k in views){
+      document.getElementById(views[k]).classList.toggle("on", k === route);
+    }
+    var navs = document.querySelectorAll("[data-nav]");
+    for (var i=0;i<navs.length;i++){
+      navs[i].classList.toggle("active", navs[i].getAttribute("data-nav") === route);
+    }
+    if (route === "callback") renderCallback(params);
+    if (location.hash !== "" && route !== "callback") window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange", render);
+  render();
+})();
+</script>
+</body>
+</html>
